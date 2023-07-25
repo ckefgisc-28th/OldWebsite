@@ -8,11 +8,37 @@
         <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="/static/css/header-footer.css" />
-<link rel="stylesheet" type="text/css" href="/static/css/main-style.css" />
+        <!-- generated from ./static/css/header-footer.css -->
+        <style>
+header, footer {
+    background: #eee;
+    padding: 1vh 4vh;
+}
+</style>
+<!-- generated from ./static/css/main-style.css -->
+        <style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content-wrapper {
+    flex-grow: 1;
+}
+</style>
 
 
-        <script src="/static/js/main-script.js"></script>
+        <script>
+pageOnload = (ev) => {
+    alert("Welcome to CKEFGISC!");
+}
+</script>
 
 
         <title>首頁 | 建北電資 28th</title>
@@ -27,7 +53,8 @@
     </center>
 </header>
 
-        <!-- 這邊是超級噁心毒瘤寫法 我只是在測試 不要學 -->
+        <div class="main-content-wrapper">
+            <!-- 這邊是超級噁心毒瘤寫法 我只是在測試 不要學 -->
 <center>
     <br>
     <h2>建北電資 28th 社網架設中……</h2>
@@ -36,6 +63,7 @@
         歡迎先到 <a href="https://ckefgisc.github.io/">上一屆的社網</a> 看看
     </p>
 </center>
+        </div>
 
         <footer>
     <!-- 這邊是超級噁心毒瘤寫法 我只是在測試 不要學 -->
