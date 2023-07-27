@@ -81,6 +81,9 @@ header nav li {
   width: fit-content;
   flex-direction: column;
   align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .icon-image, .icon-text {
@@ -139,15 +142,13 @@ header nav li {
   margin-top: 20px;
   padding: 10px 20px;
   font-weight: 500;
-  text-shadow: 0 0 3px var(--bs-yellow);
+  text-shadow: 0 0 3px var(--color-primary);
   border-width: 2px;
   border-radius: 30px;
 }
 
-#map {
-  padding-top: 10px;
-  padding-bottom: 100px;
-  background-color: var(--color-white);
+section {
+  padding-bottom: 3em;
 }
 
 #map .card {
@@ -173,9 +174,10 @@ header nav li {
 }
 
 :root {
-  --color-primary: #ffc869;
+  --color-primary: #feca50;
   --color-secondary: #e7e1d7;
   --color-white: #f8f8f7;
+  --color-white-soft: #f1f0ef;
   --color-dark: #363636;
   --color-lightgray: #e4e2de;
 }
@@ -225,17 +227,73 @@ body {
 
 .section-title {
   display: flex;
-  margin: 1em auto;
-  font-size: 1.2em;
+  margin: 1.6em auto;
+  font-size: 1.4em;
   width: 6em;
-  height: 1.8em;
+  height: 2em;
   transform: skewX(-30deg);
   justify-content: center;
   align-items: center;
+  background: var(--color-primary);
 }
 
 .section-title > * {
   transform: skewX(30deg);
+}
+
+.text-paragraph {
+  padding: 2em 3em;
+  border-radius: 10px;
+  background: var(--color-white-soft);
+}
+
+.text-paragraph h3 {
+  margin-bottom: 0.6em;
+}
+
+.text-paragraph .tab-1 {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.text-paragraph .tab-2 {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.text-paragraph .tab-3 {
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+.text-paragraph .tab-4 {
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
+.text-paragraph .tab-5 {
+  padding-left: 5em;
+  padding-right: 5em;
+}
+
+.text-paragraph .tab-6 {
+  padding-left: 6em;
+  padding-right: 6em;
+}
+
+.text-paragraph .tab-7 {
+  padding-left: 7em;
+  padding-right: 7em;
+}
+
+.text-paragraph .tab-8 {
+  padding-left: 8em;
+  padding-right: 8em;
+}
+
+.text-paragraph .tab-9 {
+  padding-left: 9em;
+  padding-right: 9em;
 }/*# sourceMappingURL=main-style.css.map */
 </style>
 <!-- generated from ./static/css/scroller.css -->
@@ -312,7 +370,7 @@ body {
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">首頁</a>
+                            <a class="nav-link" href="#">公告</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">關於</a>
@@ -324,7 +382,7 @@ body {
                             <a class="nav-link" href="#">活動</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled">歷屆博物館</a>
+                            <a class="nav-link">歷屆博物館</a>
                         </li>
                     </ul>
                 </div>
@@ -351,7 +409,7 @@ body {
 <section id="map">
     <div class="container">
         <div class="row">
-            <div class="section-title text-center text-bg-warning"> <div>網站地圖</div> </div>
+            <div class="section-title text-center"> <div>網站地圖</div> </div>
         </div>
         <div class="row">
             <div class="col-md-3">
@@ -409,7 +467,27 @@ body {
 <section id="about">
     <div class="container">
         <div class="row">
-            <div class="section-title text-center text-bg-warning"> <div>關於我們</div> </div>
+            <div class="section-title text-center"> <div>關於我們</div> </div>
+        </div>
+        <div class="row">
+            <div class="text-paragraph">
+                <h3>關於建北電資</h3>
+                    <h4 class="tab-1"><li>社史</li></h4>
+                        <p class="tab-5">
+                            好奇乃人類之天性，知識是實現夢想之道，而真理則是心靈最安寧的歸宿
+                            建電與北資自 1995 年合併，至今已傳承至 28 屆，並合稱建北電資，也因為如此，雙方也培養出了許多情感或愛情，並且兩社合作密切，不只是春夏秋冬的大活動，連宣幹或放學的小社課也都是一起舉辦的
+                            如果你覺得女校或男校的生活太無聊，建北電資會告訴你什麼叫把男女分校當成男女混校，我們常常一起出去社遊，也常常會聽到有北資的說，ㄟ要不要去建電社辦，諸如此類的，在常人來看，建北電資根本就是同一個社團
+                        </p>
+                    <h4 class="tab-1"><li>吉祥物</li></h4>
+                    <div class="tab-5 d-flex">
+                        <img src="/static/images/chicken.png" height="120" />
+                        <p>
+                            北資的吉祥物，後經建電學長發揚光大後，成為建北電資的吉祥物，會出現在宣幹卡片上的可愛小雞
+                            聽說歷屆學長姐對於蘇格拉底雞到底有沒有手爭論不已：一一以上學長姐皆表示它沒有手，但是一二十分堅持蘇格拉底雞應該有手
+                            到底真相是什麼呢？有待各位努力找出來了 XD
+                        </p>
+                    </div>
+            </div>
         </div>
     </div>
 </section>
