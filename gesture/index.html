@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>比手畫腳 | 建北電資 28th</title>
+    </head>
+    <body>
+        <style>
+            .gesture-game-box {
+                margin: 20px auto;
+            }
+            .gesture-game-box > * {
+                display: flex;
+                justify-content: center;
+                margin: 12px auto;
+            }
+            .question-text {
+                font-size: 108px;
+            }
+        </style>
+        <div class="gesture-game-box">
+            <div class="question-text">
+                比手畫腳
+            </div>
+            <div class="timer">
+                <input type="number" id="time" value="5" />
+                &nbsp;分鐘&nbsp;
+                <input type="button" id="start" onclick="start();" value="開始" />
+            </div>
+            <div class="details">
+                目前得分：
+                <span class="score">0</span>
+                &nbsp;&nbsp;
+                <button id="skip" onclick="skip();">跳過</button>
+                &nbsp;
+                <button id="answer" onclick="answer();">答對了</button>
+            </div>
+        </div>
+        <script>
+            var questions = [
+                "魔術方塊", "菸蒂", "操場"
+            ];
+
+            var setStyle = (element, key, value) => {
+                element.style[key] = value;
+            };
+
+            var toggle = (selector, show) => {
+                setStyle(
+                    document.querySelector(selector),
+                    "display", (show ? "" : "none")
+                );
+            };
+
+            var setText = (text) => {
+                document.querySelector(".question-text").innerHTML = text;
+            };
+
+            var shuffle = (array) => {
+                for (let i = array.length - 1; i > 0; --i) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [ array[i], array[j] ] = [ array[j], array[i] ];
+                }
+            };
+
+            toggle(".details", false);
+
+            var endTimeout, index, score, completedAll;
+
+            var start = () => {
+                toggle(".timer", false);
+                toggle(".details", true);
+
+                shuffle(questions);
+
+                var time = document.querySelector("input#time").value;
+
+                index = 0, score = 0;
+
+                completedAll = showQuestion(index);
+
+                endTimeout = setTimeout(end, time * 60 * 1000);
+            };
+
+            var end = (completedAll = false) => {
+                toggle(".timer", true);
+                toggle(".details", false);
+
+                if (completedAll)
+                    setText(`你答完了，共 ${score} 分`);
+                else
+                    setText(`時間到了，共 ${score} 分`);
+            };
+
+            var showQuestion = (index) => {
+                if (index >= questions.length) {
+                    clearTimeout(endTimeout);
+                    end(true);
+                    return true;
+                }
+
+                setText(questions[index]);
+            };
+
+            var showSmallScore = (score) => {
+                document.querySelector(".score").innerHTML = score;
+            };
+
+            var nextQuestion = () => {
+                index++;
+                showQuestion(index);
+                showSmallScore(score);
+            }
+
+            var skip = () => {
+                nextQuestion();
+            };
+
+            var answer = () => {
+                score++;
+                nextQuestion();
+            };
+        </script>
+    </body>
+</html>
