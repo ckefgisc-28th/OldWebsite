@@ -35,7 +35,7 @@
                 &nbsp;:&nbsp;
                 <span class="time sec">45</span>
                 &nbsp;&nbsp;
-                目前得分：
+                答對的題目：
                 <span class="score">0</span>
                 &nbsp;&nbsp;
                 <button id="skip" onclick="skip();">跳過</button>
@@ -72,7 +72,7 @@
 
             toggle(".details", false);
 
-            var endTime, endTimeout, index, score, completedAll;
+            var endTime, endTimeout, index, score;
 
             var start = () => {
                 toggle(".timer", false);
@@ -86,27 +86,24 @@
 
                 index = 0, score = 0;
 
-                completedAll = showQuestion(index);
+                showQuestion(index);
 
                 var delay = time * 60 * 1000;
                 endTime = new Date().getTime() + delay;
                 endTimeout = setTimeout(end, delay);
             };
 
-            var end = (completedAll = false) => {
+            var end = () => {
                 toggle(".timer", true);
                 toggle(".details", false);
 
-                if (completedAll)
-                    setText(`你答完了，共 ${score} 分`);
-                else
-                    setText(`時間到了，共 ${score} 分`);
+                setText(`共答對 ${score} / ${index} 題`);
             };
 
             var showQuestion = (index) => {
                 if (index >= questions.length) {
                     clearTimeout(endTimeout);
-                    end(true);
+                    end();
                     return true;
                 }
 
