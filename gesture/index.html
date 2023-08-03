@@ -25,7 +25,9 @@
                 比手畫腳
             </div>
             <div class="timer">
-                <input type="number" id="time" value="5" />
+                <input type="number" id="chunk" min="1" max="2" value="1" />
+                &nbsp;號題庫&nbsp;&nbsp;
+                <input type="number" id="time" min="1" max="60" value="5" />
                 &nbsp;分鐘&nbsp;
                 <input type="button" id="start" onclick="start();" value="開始" />
             </div>
@@ -44,30 +46,34 @@
             </div>
         </div>
         <script>
-            var questions = [
-                '眼高手低',   '七上八下',         '靈機應變',
-                '一毛不拔',   '火上加油',         '衣架',
-                '礦泉水',     '圓規',             '電腦',
-                '春聯',       '兔子',             '青蛙',
-                '魚',         '痛哭流涕',         '毛遂自薦',
-                '籃球員開車', '大象',             '下班',
-                '上廁所',     '唱歌',             'CPR',
-                '按電鈴',     '招計程車',         '便祕',
-                '暈倒',       '打呼',             '拉拉鍊',
-                '拉小提琴',   '吃餅乾',           '以牙還牙',
-                '立竿見影',   '喋喋不休居高臨下',  '守口如瓶',
-                '打電動',     '吃飯',             '打哈欠',
-                '跳繩',       '喝酒',             '魷魚遊戲',
-                '塗口紅',     '打排球',           '自由式',
-                '發抖',       '聽音樂',           '刷牙',
-                '免洗餐具',   '體適能',           '車禍',
-                '皮卡丘',     '彩虹',             '魔術方塊',
-                '流星',       '販賣機',           '髮捲',
-                '腮紅',       '蠟燭',             '斑馬線',
-                '耳環',       '龍捲風',           '圓周率',
-                '聖誕老人',   '抽血',             '情侶',
-                '撐陽傘'
-            ]
+            var sections = [
+                [
+                    '眼高手低', '靈機應變',   '一毛不拔',
+                    '火上加油', '衣架',       '礦泉水',
+                    '圓規',     '電腦',       '春聯',
+                    '兔子',     '青蛙',       '魚',
+                    '痛哭流涕', '毛遂自薦',   '籃球員開車',
+                    '大象',     '下班',       '上廁所',
+                    '唱歌',     'CPR',        '按電鈴',
+                    '招計程車', '便祕',       '暈倒',
+                    '打呼',     '拉拉鍊',     '拉小提琴',
+                    '吃餅乾',   '免洗餐具',   '體適能',   
+                    '打哈欠發抖'
+                ],
+                [
+                    '喋喋不休', '居高臨下', '守口如瓶',
+                    '打電動',   '吃飯',     '跳繩',
+                    '喝酒',     '魷魚遊戲', '塗口紅',
+                    '打排球',   '自由式',   '七上八下',
+                    '刷牙',     '車禍',     '皮卡丘',
+                    '彩虹',     '魔術方塊', '流星',
+                    '販賣機',   '髮捲',     '腮紅',
+                    '蠟燭',     '斑馬線',   '耳環',
+                    '龍捲風',   '圓周率',   '聖誕老人',
+                    '抽血',     '情侶',     '撐陽傘',
+                    '立竿見影', '以牙還牙', 
+                ]
+            ];
 
             var setStyle = (element, key, value) => {
                 element.style[key] = value;
@@ -93,19 +99,20 @@
 
             toggle(".details", false);
 
-            var endTime, endTimeout, index, score;
+            var endTime, endTimeout, index, score, questions;
 
             var start = () => {
+                var time  = document.querySelector("input#time").value,
+                    chunk = document.querySelector("input#chunk").value - 1;
+
+                index = 0, score = 0, questions = sections[chunk];
+
                 toggle(".timer", false);
                 toggle(".details", true);
 
                 showSmallScore(0);
 
                 shuffle(questions);
-
-                var time = document.querySelector("input#time").value;
-
-                index = 0, score = 0;
 
                 showQuestion(index);
 
