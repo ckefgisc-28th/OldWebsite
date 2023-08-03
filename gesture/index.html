@@ -5,6 +5,9 @@
     </head>
     <body>
         <style>
+            input[type="number"] {
+                width: 40px;
+            }
             .gesture-game-box {
                 margin: 20px auto;
             }
@@ -27,6 +30,11 @@
                 <input type="button" id="start" onclick="start();" value="開始" />
             </div>
             <div class="details">
+                剩餘時間：
+                <span class="time min">0</span>
+                &nbsp;:&nbsp;
+                <span class="time sec">45</span>
+                &nbsp;&nbsp;
                 目前得分：
                 <span class="score">0</span>
                 &nbsp;&nbsp;
@@ -37,7 +45,7 @@
         </div>
         <script>
             var questions = [
-                "魔術方塊", "菸蒂", "操場"
+                "魔術方塊", "菸蒂", "操場", "筆電", "耳機", "混水摸魚", "煩惱"
             ];
 
             var setStyle = (element, key, value) => {
@@ -64,11 +72,13 @@
 
             toggle(".details", false);
 
-            var endTimeout, index, score, completedAll;
+            var endTime, endTimeout, index, score, completedAll;
 
             var start = () => {
                 toggle(".timer", false);
                 toggle(".details", true);
+
+                showSmallScore(0);
 
                 shuffle(questions);
 
@@ -78,7 +88,9 @@
 
                 completedAll = showQuestion(index);
 
-                endTimeout = setTimeout(end, time * 60 * 1000);
+                var delay = time * 60 * 1000;
+                endTime = new Date().getTime() + delay;
+                endTimeout = setTimeout(end, delay);
             };
 
             var end = (completedAll = false) => {
@@ -119,6 +131,19 @@
                 score++;
                 nextQuestion();
             };
+
+            var showTime = () => {
+                var timeLeft = new Date(endTime).getTime() - new Date().getTime();
+                timeLeft = Math.ceil(timeLeft / 1000);
+
+                document.querySelector(".time.min").innerHTML = Math.floor(timeLeft / 60);
+                document.querySelector(".time.sec").innerHTML = (timeLeft % 60)
+                    .toString().padStart(2, "0");
+
+                window.requestAnimationFrame(showTime);
+            }
+
+            showTime();
         </script>
     </body>
 </html>
